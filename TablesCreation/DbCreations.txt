@@ -1,0 +1,73 @@
+To create our db ----
+
+CREATE DATABASE petshopdb;
+
+*
+*
+*
+*
+*
+
+To create our users table ----
+
+CREATE TABLE `users` (
+`uid` int NOT NULL AUTO_INCREMENT,
+`username` varchar(250) NOT NULL,
+`password` varchar(250) NOT NULL,
+`email` varchar(250) NOT NULL,
+`phone` varchar(250) NOT NULL,
+`adress` varchar(250) NOT NULL,
+PRIMARY KEY (`uid`));
+
+*
+*
+*
+*
+
+To create our products table ----
+
+CREATE TABLE `products` (
+`pid` int NOT NULL AUTO_INCREMENT,
+`name` varchar(450) NOT NULL,
+`details` text NOT NULL,
+`price` double NOT NULL,
+`image` varchar(450) NOT NULL,
+PRIMARY KEY (`pid`));
+
+*
+*
+*
+*
+
+To insert some products examples ---
+
+INSERT INTO `products` VALUES (1,'Cachette','Jolie cachette pour les petits chiens ou les chats. Livré plié dans une housse protectrice. Se plie et se replie en 1 seconde.\n\nTissus : 100% polyester\nOuatine : 100% polyester\nLavable en machine (30°C)\nDimensions : 50 x 40 x 34 cm\n',79,'home.jpg'),
+(2,'Chair de la truite','La chair de la truite, parfaitement nourrissante,\n favorise de manière optimale la santé et la condition physique du tube digestif.\n Les acides gras oméga-3 aident à maintenir la peau, \n le cœur et les articulations en bonne santé.\n L\'échinacée renforce l\'immunité générale et particulière \n et possède des propriétés anti-inflammatoires,\n antibactériennes et antivirales.\n Elle consolide également la santé de la peau \n et une bonne digestion et contribue à améliorer l\'état de santé général.\n\nCOMPOSITION:\n viande en filets 85 % (dont 71 % de poulet, 14 % de truite),\n bouillon 12 %, échinacée 1 %,\n huile de lin 1 %, minéraux 0,5 %,\n amidon végétal 0,5 %.\n\nCOMPOSANT ANALYTIQUES POUR 1 KG:\n protéines brutes 7.5 %,\n matières grasses brutes 4.0 %,\n fibres brutes 0.5 %, cendres brutes 2.0 %,\n humidité 82.0 %, calcium 0.15 %, phosphore 0.2 %,\n sodium 0.3 %, oméga 3 0.25 %.\n',40,'truite.jpg'),
+(3,'Haskey Puppy','Bonjour! C\'est très agréable de vous rencontrer.\nVous cherchez un compagnon pour la vie ?\nCherchez pas plus loin. Je suis là et parfait pour toi.\nCroyez-moi! Je suis très fidèle et je peux te faire sourire juste comme je remue la queue.\nJ\'ai un tempérament merveilleux.\nOh! Ai-je mentionné que je suis en aussi bonne santé que possible ?\nOh, je suis à jour dans mes vaccinations et le vétérinaire a vérifié de la tête à la queue.\nJe parie que vous êtes excité maintenant,\nn\'est-ce pas ? Eh bien,\nchoisissez-moi aujourd\'hui !\n',500,'haskey.jpg'),
+(4,'Labrador','ID du chien:\n#724415\n\nDate de naissance::\n18 novembre 2022\n\nDisponible:\nJe suis prêt aujourd\'hui !\n\nCouleur:\nJaune\n\nLe poids de mère:\n60 - 65 livres\n\nLe poids de père:\n70 - 75 livres\n\nEnregistrement:\nAKC\n\nLa variété:\naméricain et anglais\n',900,'labrador.jpg');
+
+*
+*
+*
+*
+
+To create our purchased_products table ----
+
+CREATE TABLE purchased_products (
+bid INT NOT NULL AUTO_INCREMENT,
+user_id INT NOT NULL, 
+product_id INT NOT NULL,
+quantity int NOT NULL,
+PRIMARY KEY (Bid),	
+INDEX (user_id),
+INDEX (product_id),   
+FOREIGN KEY (user_id) REFERENCES users(uid)  
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (product_id) REFERENCES products(pid)  
+ON DELETE CASCADE ON UPDATE CASCADE  
+);
+
+*
+*
+*
+*
